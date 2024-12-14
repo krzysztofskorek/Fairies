@@ -5,23 +5,50 @@ public class PlayerMovement : MonoBehaviour
 
     public float runSpeed = 20f;
 
-    float horizontal, vertical;
+    Vector2 movement;
     Rigidbody2D body;
+    Animator animator;
+    InputSystem_Actions inputActions;
 
-
-    private void Start()
+    private string horizontal = "Horizontal";
+    private string vertical = "Vertical";
+    private string last_horizontal = "LastHorizontal";
+    private string last_vertical = "LastVertical";
+    private void Awake()
     {
+        inputActions = new InputSystem_Actions();
         body = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
+
+
+    private void OnEnable()
+    {
+        inputActions.Player.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Player.Disable();
+    }
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        movement = inputActions.Player.Move.ReadValue<Vector2>();
+        animator.SetFloat(horizontal, movement.x);
+        animator.SetFloat(vertical, movement.y);
+
+
+        if (movement != Vector2.zero)
+        {
+            animator.SetFloat(last_horizontal, movement.x);
+            animator.SetFloat(last_vertical, movement.y);
+        }
+         
     }
 
     private void FixedUpdate()
     {
-        body.linearVelocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+        body.linearVelocity = movement * runSpeed;
     }
 }
