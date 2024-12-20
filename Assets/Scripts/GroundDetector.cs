@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class GroundDetector : MonoBehaviour
 {
-    private int size = 10;
+    private int size = 20;
     [SerializeField] Grid grid;
     [SerializeField] Tilemap ground;
     [SerializeField] Tile tile;
