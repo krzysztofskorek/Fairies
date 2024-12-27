@@ -7,7 +7,7 @@ public class TilemapScript : MonoBehaviour
     Tile tile;
     [SerializeField]
     Tilemap map;
-
+    [SerializeField] GameObject detector;
      
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +43,7 @@ public class TilemapScript : MonoBehaviour
                 map.SetTile(new Vector3Int(startX + x, startY + y, 0), tile);
             }
         }
+         
     }
 
 }

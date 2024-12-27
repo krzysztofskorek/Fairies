@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Weapon
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -40,6 +42,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tilemap
+    uniqueID: 364180907
+    locked: 0
+  - name: Enemies
+    uniqueID: 3300890567
+    locked: 0
+  - name: Weapons
+    uniqueID: 1873145861
     locked: 0
   - name: Player
     uniqueID: 3158745745

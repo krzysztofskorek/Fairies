@@ -9,7 +9,7 @@ public class GroundDetector : MonoBehaviour
     [SerializeField] Grid grid;
     [SerializeField] Tilemap ground;
     [SerializeField] Tile tile;
-
+    [SerializeField] GameObject Raf;
     private void Start()
     {
         StartCoroutine(nameof(DetectStuff));
@@ -46,6 +46,11 @@ public class GroundDetector : MonoBehaviour
 
     private void FillBox(int startX, int startY)
     {
+        if (ground.HasTile(new Vector3Int(startX, startY, 0))) {
+            return;
+        }
+          
+        
         for (int x = 0; x < size; x++)
         {
 
@@ -54,5 +59,10 @@ public class GroundDetector : MonoBehaviour
                 ground.SetTile(new Vector3Int(startX + x, startY + y, 0), tile);
             }
         }
+        Vector3 farPos;
+        farPos = grid.CellToWorld(new Vector3Int(startX + size /2, startY + size /2, 0));
+        
+        
+        Instantiate(Raf, farPos, Quaternion.identity);
     }
 }
