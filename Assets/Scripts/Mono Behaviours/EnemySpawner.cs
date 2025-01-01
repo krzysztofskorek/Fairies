@@ -49,9 +49,9 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 GetPointOnCircle()
     {
         int size = 16;
-        int dir = 1;
+        int dir;
         int side = Random.Range(0, 2);
-        print(side);
+        
         if (side == 0) // hor
         {
             int hor = Random.Range(0, 2);

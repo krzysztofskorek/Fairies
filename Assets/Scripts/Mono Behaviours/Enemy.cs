@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -5,6 +6,8 @@ public class Enemy : MonoBehaviour
     GameObject player;
     Rigidbody2D rb;
     SpriteRenderer sprite;
+
+    private string playerTag = "Player";
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +28,26 @@ public class Enemy : MonoBehaviour
         else
         {
             sprite.flipX = true;
+        }
+    }
+
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(playerTag))
+        {
+             
+            collision.gameObject.GetComponent<PlayerMovement>()?.GetDamaged();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag(playerTag))
+        {
+
+            collision.gameObject.GetComponent<PlayerMovement>()?.StopDamage();
         }
     }
 }
